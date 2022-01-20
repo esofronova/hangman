@@ -29,7 +29,7 @@ export default function Hangman() {
    if (result.length > 0) {
       window.onkeydown = null;
    } else {
-      window.onkeydown = (e) => {
+      window.onkeydown = e => {
          if (alphabet.search(e.key) > -1) {
             let newMatchArr = [...matchArr];
 
@@ -62,17 +62,15 @@ export default function Hangman() {
                className="letters my-4 centered flex-row mx-auto flex-wrap"
                style={{ width: "95%" }}
             >
-               {
-                  wordArr.map((item, index) => {
-                     return (
-                        <div
-                           key={index}
-                           className="m-2 border border-light centered text-uppercase text-white"
-                           style={{ width: "40px", height: "40px", userSelect: "none" }}
-                        >{matchArr.includes(item) ? item : item === ' ' ? ' ' : counter === 0 ? item : '*'}</div>
-                     );
-                  })
-               }
+               {wordArr.map((item, index) => {
+                  return (
+                     <div
+                        key={index}
+                        className="m-2 border border-light centered text-uppercase text-white"
+                        style={{ width: "40px", height: "40px", userSelect: "none" }}
+                     >{matchArr.includes(item) ? item : item === ' ' ? ' ' : counter === 0 ? item : '*'}</div>
+                  );
+               })}
             </div>
             <div className="centered flex-column">
                <h1 className={"text-center fw-bold mb-3 " + (result === "Game Over!" ? "text-danger" : "text-success")}>{result}</h1>
@@ -94,6 +92,7 @@ export default function Hangman() {
                <div className={"rightleg" + (counter < 1 ? "" : "invisible")}></div>
             </div>
          </div>
+         <input className='d-none' autoFocus />
       </div>
    );
 };
